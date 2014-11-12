@@ -59,8 +59,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
             // setting the output image file and size to 200x200 pixels square.
             Uri croppedImage = Uri.fromFile(croppedImageFile);
 
-            CropImageIntentBuilder cropImage = new CropImageIntentBuilder(200, 200, croppedImage);
-            cropImage.setSourceImage(data.getData());
+            CropImageIntentBuilder cropImage = new CropImageIntentBuilder(1, 2, 200, 400, croppedImage);
+            cropImage.setSourceImage(data.getData())
+                    .setOutputFormat("PNG");
+//                    .setScale(false)
+//                    .setScaleUpIfNeeded(false);
+
 
             startActivityForResult(cropImage.getIntent(this), REQUEST_CROP_PICTURE);
         } else if ((requestCode == REQUEST_CROP_PICTURE) && (resultCode == RESULT_OK)) {
